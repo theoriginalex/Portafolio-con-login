@@ -1,0 +1,79 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #4a148c, #9c27b0) no-repeat fixed;
+            background-size: cover;
+            color: white;
+        }
+
+        .card {
+            border-radius: 15px; /* Esquinas más redondeadas para un diseño moderno */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Sombra más suave */
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con algo de transparencia */
+            margin-bottom: 30px; /* Separación entre tarjetas */
+            overflow: hidden; /* Asegura que nada salga del contenedor */
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .card-body {
+            padding: 20px; /* Más espacio dentro de la tarjeta */
+        }
+
+        .card-title {
+            font-size: 1.8rem; /* Tamaño del título */
+            font-weight: bold;
+            color: white; /* Color más oscuro para contraste */
+            margin-bottom: 15px; /* Espacio debajo del título */
+        }
+
+        .card-description {
+            font-size: 1rem; /* Ajustar el tamaño de la descripción */
+            color: white; /* Color ligeramente gris para mejor lectura */
+            text-align: justify; /* Justificación del texto */
+            line-height: 1.5; /* Mejorar la legibilidad aumentando el espaciado de líneas */
+            max-height: 7.5em; /* Limitar a aproximadamente 5 líneas */
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 5; /* Limita a 5 líneas y añade puntos suspensivos */
+        }
+
+        .course-details {
+            margin-top: 15px; /* Espacio sobre los detalles del curso */
+        }
+
+        .btn-secondary {
+            background-color: #7c27fc; /* Color del botón */
+            border-color: #7c27fc; /* Borde del botón */
+            width: 100%; /* Botón a ancho completo */
+            padding: 10px; /* Añadir relleno al botón */
+            color: white; /* Texto del botón en blanco */
+            font-weight: bold; /* Texto más destacable */
+            text-transform: uppercase; /* Transformar el texto del botón a mayúsculas */
+            margin-top: 20px; /* Espacio encima del botón */
+        }
+
+        .btn-secondary:hover {
+            background-color: #6a1cb3; /* Cambio de color al pasar el cursor */
+            border-color: #6a1cb3;
+        }
+    </style>
+
+    <div class="container py-5">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Institución: {{ curso.institucion_del_curso }}</h2>
+                <p class="card-description">{{ curso.descripcion_curso }}</p>
+                <div class="course-details">
+                    <p class="card-text"><strong>Fecha:</strong> {{ curso.fecha_curso }}</p>
+                    <p class="card-text"><strong>Horas:</strong> {{ curso.numero_horas }}</p>
+                </div>
+                <a href="{% url 'lista_cursos' %}" class="btn btn-secondary">Volver a la Experiencia</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

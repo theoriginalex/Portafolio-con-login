@@ -1,0 +1,28 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+        <style>
+        /* Estilo para el fondo de la página */
+        body {
+                background: linear-gradient(to right, #6a11cb, #2575fc);
+                min-height: 100vh; /* Asegura que cubra toda la altura de la ventana */
+                color: white; /* Texto blanco por defecto */
+        }
+        h5{
+                color: black;
+        }
+        </style>
+
+        <div class="container my-5" style="background: rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 20px;">
+                <h1 class="text-center">{{ post.titulo }}</h1>
+                <h5 class="text-center ">{{ post.fecha }}</h5>
+
+                <div class="text-center">
+                        <img src="{{ post.imagen.url }}" alt="" class="img-fluid rounded my-3" style="max-height: 400px; object-fit: cover;">
+                </div>
+
+                <p>{{ post.descripcion }}</p>
+                
+                <a href="{% url 'posts' %}" class="btn btn-success mt-3">Volver a Posts</a>
+        </div>
+{% endblock %}

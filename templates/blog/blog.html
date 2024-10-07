@@ -1,0 +1,67 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #4a148c, #9c27b0) no-repeat fixed; /* Fondo degradado que no se repite */
+            background-size: cover; /* El degradado cubrirá toda la pantalla */
+            color: white;
+        }
+
+        /* rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 20px;
+        
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+        */
+        .card {
+            height: 100%; /* Asegura que todas las tarjetas tengan la misma altura */
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+        }
+        .card-img-top {
+            max-height: 200px; /* Controla la altura máxima de la imagen */
+            object-fit: cover; /* Mantiene la relación de aspecto y recorta la imagen si es necesario */
+            border-radius: 10px;
+        }
+        .card-body {
+            flex-grow: 1; /* Hace que el cuerpo de la tarjeta ocupe el espacio disponible */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card-title {
+            color: white; /* Color del título */
+            font-size: 1.25rem; /* Tamaño del título */
+            font-weight: bold;
+        }
+        .card-text {
+            color: white; /* Color del texto */
+            white-space: nowrap; /* Limita a una línea */
+            overflow: hidden; /* Oculta el texto que se desborda */
+            text-overflow: ellipsis; /* Agrega puntos suspensivos al final del texto desbordante */
+        }
+    </style>
+
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Posts</h1>
+        <div class="row">
+            {% for i in posts %}
+                <div class="col-md-4 mb-4 d-flex align-items-stretch" >
+                    <div class="card post-card">
+                        <img src="{{ i.imagen.url }}" alt="Post Image" class="card-img-top post-image">
+                        <div class="card-body post-details">
+                            <h2 class="card-title">{{ i.titulo }}</h2>
+                            <p class="card-text">{{ i.descripcion }}</p>
+                            <p class="post-date ">{{ i.fecha }}</p>
+                            <a href="{% url 'detalle_post' i.id %}" class="btn btn-primary post-button mt-2">Leer más</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

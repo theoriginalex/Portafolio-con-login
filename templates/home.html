@@ -1,0 +1,80 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc); /* Degradado de fondo */
+            color: white; /* Color de texto para que sea visible sobre el fondo */
+        }
+        .inicio {
+            margin-top: 100px; /* Espacio superior para centrar mejor el contenido */
+            display: flex; /* Utiliza flex para alinear los elementos en fila */
+            align-items: center; /* Alinea verticalmente la imagen y el texto */
+            gap: 20px; /* Espacio entre la imagen y el texto */
+        }
+        .imagen-perfil {
+            width: 300px; /* Ajusta el tamaño de la imagen */
+            height: 300px; /* Ajusta el tamaño de la imagen */
+            border-radius: 50%; /* Hace que la imagen sea redonda */
+            object-fit: cover; /* Mantiene la proporción y ajusta la imagen al contenedor */
+            border: 5px solid #fff; /* Borde blanco para destacar la imagen */
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2); /* Sombra para darle un efecto elevado */
+        }
+        .inicio-texto {
+            flex: 1; /* Hace que el texto ocupe el espacio restante */
+        }
+        .btn-primary {
+            background-color: #ff4081; /* Color personalizado para el botón de descargar */
+            border: none;
+            font-weight: bold; /* Texto más destacable */
+            text-transform: uppercase; /* Transformar el texto del botón a mayúsculas */
+            margin-top: 0px; /* Espacio encima del botón */
+            padding: 10px 20px; /* Más espacio interno */
+        }
+        .btn-primary:hover {
+            background-color: #e5306c; /* Cambio de color al pasar el cursor */
+        }
+        .card-title {
+            color: black;
+            font-family: sans-serif;
+        }
+        .card-text {
+            color: black;
+            font-family: sans-serif;
+        }
+    </style>
+
+    <div class="container text-center mt-5">
+        <div class="inicio">
+            {% load static %}
+            <img src="{% static 'curriculum/programador.jpg' %}" class="imagen-perfil" alt="Imagen de perfil de Alex Chica">
+            <div class="inicio-texto">
+                <h1 class="display-4">I am <strong>Alex Chica</strong></h1>
+                <h3 class="mb-4">Soy un Desarrollador FullStack especializado en Python, apasionado por la creación de soluciones digitales que transforman ideas en realidades. Con una sólida formación en desarrollo web y una experiencia diversa en proyectos, me destaco en el diseño y la implementación de aplicaciones interactivas y escalables. Mi enfoque se basa en la excelencia técnica, la colaboración efectiva y el aprendizaje continuo, siempre buscando mejorar mis habilidades y adoptar nuevas tecnologías. Estoy aquí para llevar tus proyectos al siguiente nivel, fusionando creatividad con lógica para lograr resultados excepcionales.</h3>
+                {% load static %}
+                <a class="btn btn-primary btn-lg" href="{% static 'curriculum/cv.pdf' %}" target="_blank">Descargar CV <i class="fas fa-download"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor de los proyectos -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Mis Proyectos</h2>
+        <div class="row">
+            {% for i in projects %}
+                <div class="col-md-4 mb-4 d-flex align-items-stretch">
+                    <div class="card">
+                        <img src="{{ i.imagen.url }}" class="card-img-top" alt="{{ i.titulo }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ i.titulo }}</h5>
+                            <p class="card-text">Descripción: {{ i.descripcion }}</p>
+                            <a href="{{ i.url }}" target="_blank" class="btn btn-success mt-3">Ver Proyecto</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

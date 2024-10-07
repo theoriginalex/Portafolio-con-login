@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px);">
+    <div class="container">
+        <a class="navbar-brand fw-bold fst-italic" href="{% url 'home' %}">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold fst-italic" href="{% url 'posts' %}">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold fst-italic" href="{% url 'lista_cursos' %}">Experiencia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signout' %}">Cerrar Sesión</a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                        {% load static %}
+                        <a class="btn btn-primary btn-sm ms-3" style="background-color: #7c27fc; border-color: #7c27fc;" href="{% static 'curriculum/cv.pdf' %}" target="_blank">Download CV</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signin' %}">Iniciar Sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">Registrar</a>
+                    </li>
+                    
+                {% endif %}
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
