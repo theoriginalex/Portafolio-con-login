@@ -15,8 +15,11 @@
             margin-bottom: 30px; /* Separación entre tarjetas */
             overflow: hidden; /* Asegura que nada salga del contenedor */
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
             padding: 20px;
+            width: 800px; /* Establece un ancho fijo más pequeño */
+            height: auto; /* Altura automática para adaptarse al contenido */
+            min-height: 350px; /* Establece una altura mínima para la tarjeta */
+            margin: auto;
         }
 
         .card-body {
@@ -72,7 +75,7 @@
                     <p class="card-text"><strong>Fecha:</strong> {{ curso.fecha_curso }}</p>
                     <p class="card-text"><strong>Horas:</strong> {{ curso.numero_horas }}</p>
                 </div>
-                <a href="{% url 'lista_cursos' %}" class="btn btn-secondary">Volver a la Experiencia</a>
+                <a href="{% url 'lista_cursos' %}" class="btn btn-success mt-3">Volver a la Experiencia</a>
             </div>
         </div>
     </div>

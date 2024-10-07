@@ -6,11 +6,42 @@ from .models import Project, Post, Curso
 from django.db import IntegrityError
 from django.contrib.auth.models import User
 
+#PORTAFOLIOS
 # Página de inicio
 def home(request):
     projects = Project.objects.all()
     return render(request, 'home.html', {'projects': projects})
 
+#----------------------------------------------------------------
+#BLOGS
+# Lista de posts
+@login_required(login_url='home')
+def post_normal(request):
+    posts = Post.objects.all()
+    return render(request, 'blog/blog.html', {'posts': posts})
+
+# Detalle de un post
+@login_required(login_url='home')
+def detalle_post(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    return render(request, 'blog/post_detail.html', {'post': post})
+
+#----------------------------------------------------------------
+#EXPERIENCIA
+# Lista de cursos
+@login_required(login_url='home')
+def lista_cursos(request):
+    cursos = Curso.objects.all()
+    return render(request, 'curso/curso_list.html', {'cursos': cursos})
+
+# Detalle de un curso
+@login_required(login_url='home')
+def detalle_curso(request, curso_id):
+    curso = get_object_or_404(Curso, pk=curso_id)
+    return render(request, 'curso/curso_detail.html', {'curso': curso})
+
+#----------------------------------------------------------------
+#INICIAR SESION Y CERRAR SECION
 # Registro de usuario
 def signup(request):
     if request.method == 'GET':
@@ -45,26 +76,3 @@ def signout(request):
     logout(request)
     return redirect('home')
 
-# Lista de posts
-@login_required(login_url='home')
-def post_normal(request):
-    posts = Post.objects.all()
-    return render(request, 'blog/blog.html', {'posts': posts})
-
-# Detalle de un post
-@login_required(login_url='home')
-def detalle_post(request, post_id):
-    post = get_object_or_404(Post, pk=post_id)
-    return render(request, 'blog/post_detail.html', {'post': post})
-
-# Lista de cursos
-@login_required(login_url='home')
-def lista_cursos(request):
-    cursos = Curso.objects.all()
-    return render(request, 'curso/curso_list.html', {'cursos': cursos})
-
-# Detalle de un curso
-@login_required(login_url='home')
-def detalle_curso(request, curso_id):
-    curso = get_object_or_404(Curso, pk=curso_id)
-    return render(request, 'curso/curso_detail.html', {'curso': curso})

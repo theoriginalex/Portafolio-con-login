@@ -120,7 +120,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    "/var/www/static/",
 ]
 LOGIN_REDIRECT_URL = 'cursos:lista_cursos'  # Redirige a la lista de cursos después de iniciar sesión
 LOGOUT_REDIRECT_URL = 'home'  # Redirige a la lista de cursos después de cerrar sesión

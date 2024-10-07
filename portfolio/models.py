@@ -3,6 +3,7 @@ from datetime import date
 import datetime
 
 # Create your models here.
+#PORTAFOLIOS
 class Project(models.Model):
     titulo = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=250)
@@ -13,7 +14,7 @@ class Project(models.Model):
     def __str__(self) -> str:
         return f"{self.titulo}, {self.descripcion}, {self.imagen}, {self.url}, {self.fecha}"
 
-
+#BLOGS
 class Post(models.Model):
     titulo = models.CharField(max_length=100)
     descripcion = models.TextField()
@@ -24,7 +25,7 @@ class Post(models.Model):
         return f"{self.titulo}, {self.descripcion}, {self.imagen}, {self.fecha}"
 
 
-
+#EXPERIENCIA
 class Curso(models.Model):
     institucion_del_curso = models.CharField(max_length=255)
     descripcion_curso = models.TextField()
